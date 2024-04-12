@@ -3,9 +3,9 @@ Rails.application.routes.draw do
     get 'cart_products/index'
     get 'cart_products/create'
     get 'products/index'
+    resources :cart_products do
+      delete 'destroy_all', on: :collection
+      get 'update_quantity', on: :member
+    end
   end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "products#index"
 end

@@ -3,7 +3,8 @@ class Api::CartProductsController < ApplicationController
   end
 
   def create
-    id = (params.keys[0]).to_i
+    # id = (params.keys[0]).to_i
+    id = (params[:product_id]).to_i
     product = Product.find(id)
     cart_product = CartProduct.find_by(product_id: id)
     if cart_product
@@ -15,18 +16,26 @@ class Api::CartProductsController < ApplicationController
       cart_product.save
     end
     redirect_to api_products_index_path
-    # if cart_product.save
-    #   cart_product = CartProduct.new(name: product.name, price: product.price, quantity: 1)
-    #   # cart_product.save
-    #   redirect_to api_products_index_path
-    #   # render json: cart_product
-    # else
-    #   # updated_quantity = cart_product.quantity + 1
-    #   # updated_price = cart_product.price + product.price
-    #   # cart_product = CartProduct.update!(price: updated_price, quantity: updated_quantity)
-    #   # render json: cart_product.errors
-    #   redirect_to api_products_index_path
-    # end
+  end
+
+  def update_quantity
+    cart_product = CartProduct.find(params[:id])
+    new_quantity = cart_product.quantity - 1
+    price = cart_product.price / cart_product.quantity
+    new_price = price * new_quantity
+    cart_product.update(quantity: new_quantity, price: new_price)
+    redirect_to api_products_index_path
+  end
+
+  def destroy
+    cart_product = CartProduct.find(params[:id])
+    cart_product.destroy
+    redirect_to api_products_index_path
+  end
+
+  def destroy_all
+    CartProduct.destroy_all
+    redirect_to api_products_index_path
   end
 
   private

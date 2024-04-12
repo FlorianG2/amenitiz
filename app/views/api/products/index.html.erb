@@ -1,6 +1,7 @@
 <div>
   <% @products.each do |product| %>
-  <a href='/api/cart_products/create?<%= product.id %>'>
+  <a href="#" onclick="createCartProduct(<%= product.id %>)">
+  <%# <a href='/api/cart_products/create?<%= product.id %>
     <p><%= product.name %></p>
     <p><%= product.price %>€</p>
   </a>
@@ -11,5 +12,33 @@
     <p><%= cart_product.quantity %></p>
     <p><%= cart_product.name %></p>
     <p><%= cart_product.price %>€</p>
+    <%if cart_product.quantity > 0%>
+      <%= link_to "Remove 1qty",
+      update_quantity_api_cart_product_path(cart_product)
+      %>
+    <% end %>
+    <%= link_to "Delete",
+    api_cart_product_path(cart_product),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+    %>
   <% end %>
 </div>
+<div>
+  <p>total:</p><%= @total%>
+</div>
+<div>
+    <%= link_to "Delete All",
+     destroy_all_api_cart_products_path,
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+    %>
+</div>
+
+<script>
+  function createCartProduct(productId) {
+    // Construct the URL with the product ID
+    var url = "/api/cart_products/create?product_id=" + productId;
+
+    // Navigate to the URL
+    window.location.href = url;
+  }
+</script>
