@@ -3,8 +3,8 @@ require 'json'
 seed_resource_dir = "#{__dir__}/seed_resources/"
 
 puts 'Cleaning Database...'
-Product.destroy_all
 CartProduct.destroy_all
+Product.destroy_all
 puts 'Cleaned Database'
 puts '---------------------------'
 

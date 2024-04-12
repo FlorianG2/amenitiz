@@ -8,6 +8,7 @@
 </div>
 <div>
   <% @cart_products.each do |cart_product| %>
+    <p><%= cart_product.quantity %></p>
     <p><%= cart_product.name %></p>
     <p><%= cart_product.price %>€</p>
   <% end %>
