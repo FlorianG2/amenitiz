@@ -15,7 +15,7 @@ class Api::CartProductsController < ApplicationController
       cart_product = CartProduct.new(name: product.name, price: product.price, quantity: 1, product_id: id)
       cart_product.save
     end
-    redirect_to api_products_index_path
+    homepage_index_path
   end
 
   def update_quantity

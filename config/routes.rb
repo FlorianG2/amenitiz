@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'homepage/index'
   namespace :api do
     get 'cart_products/index'
     get 'cart_products/create'
@@ -8,4 +9,5 @@ Rails.application.routes.draw do
       get 'update_quantity', on: :member
     end
   end
+  root 'homepage#index'
 end
