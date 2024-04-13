@@ -7,8 +7,6 @@ const Home = () => {
   const [cart_products, setCartProducts] = useState([]);
   const [total, setTotal] = useState([]);
 
-
-
   useEffect(() => {
     fetch("/api/products/index")
       .then(response => {
@@ -37,6 +35,64 @@ const Home = () => {
      window.location.href = root
   }
 
+  const handleDeleteAllCartProduct = () => {
+    const url = `/api/cart_products/destroy_all`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    // Send a DELETE request to the URL
+    fetch(url, {
+        method: 'DELETE',
+        headers: {
+          "X-CSRF-Token": token,
+          'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        // Handle success if needed
+        window.location.reload();
+      })
+    .catch(error => {
+        // Handle error if needed
+        console.error('Error:', error);
+    });
+ }
+
+ const handleDeleteCartProduct = (id) => {
+  const url = `/api/cart_products/${id}`;
+  const token = document.querySelector('meta[name="csrf-token"]').content;
+
+  // Send a DELETE request to the URL
+  fetch(url, {
+      method: 'DELETE',
+      headers: {
+        "X-CSRF-Token": token,
+        'Content-Type': 'application/json'
+      }
+  })
+  .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      // Handle success if needed
+      window.location.reload();
+    })
+  .catch(error => {
+      // Handle error if needed
+      console.error('Error:', error);
+  });
+}
+
+const handleRemoveQuantityCartProduct = (id) => {
+  // Construct the URL with the product ID
+  const url = `/api/cart_products/${id}/update_quantity`;
+  const root ="/"
+  // Navigate to the URL
+  window.location.href = url;
+  window.location.href = root
+}
 
   return(
     <div>
@@ -52,39 +108,21 @@ const Home = () => {
         <h1>Cart</h1>
           <ul>
           {cart_products.map(cart_product => (
-            <p>{cart_product.quantity}. {cart_product.name}</p>
+            <p key={cart_product.id}>{cart_product.quantity}. {cart_product.name}
+            <button onClick={() => handleDeleteCartProduct(cart_product.id)}>Delete</button>
+            {cart_product.quantity > 1 ? (
+              <button onClick={() => handleRemoveQuantityCartProduct(cart_product.id)}>Remove 1qty</button>
+            ) : null}
+            </p>
           ))}
           </ul>
+          <button onClick={() => handleDeleteAllCartProduct()}>Delete</button>
       </div>
       <div>
         <h1>Total : {total}€</h1>
       </div>
     </div>
   )
-
-    // <div>
-    //   <div>
-    //     <h1>Produits</h1>
-    //     <ul>
-    //       {exercises.map(exercise => (
-    //         <button key={exercise.id} onClick={() => handleUpdateTraining(exercise.price, exercise.name)}>
-    //           <li>{exercise.name} - {exercise.trainings} - {exercise.price}</li>
-    //         </button>
-    //       ))}
-    //     </ul>
-    //   </div>
-    //   <div>
-    //     <h1>Cash Register</h1>
-    //     <ul>
-    //       {trainings.map(training => (
-    //         <li key={training.id}>{training.quantity}. {training.name} - {training.price}</li>
-    //       ))}
-    //     </ul>
-    //     <div>
-    //       <p>Total: {totalPrice}</p>
-    //     </div>
-    //   </div>
-    // </div>
 };
 
 export default Home;

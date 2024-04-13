@@ -3,7 +3,6 @@ class Api::CartProductsController < ApplicationController
   end
 
   def create
-    # id = (params.keys[0]).to_i
     id = (params[:product_id]).to_i
     product = Product.find(id)
     cart_product = CartProduct.find_by(product_id: id)
@@ -34,12 +33,10 @@ class Api::CartProductsController < ApplicationController
   def destroy
     cart_product = CartProduct.find(params[:id])
     cart_product.destroy
-    redirect_to api_products_index_path
   end
 
   def destroy_all
     CartProduct.destroy_all
-    redirect_to api_products_index_path
   end
 
   private
