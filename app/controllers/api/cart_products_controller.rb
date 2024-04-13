@@ -20,10 +20,14 @@ class Api::CartProductsController < ApplicationController
 
   def update_quantity
     cart_product = CartProduct.find(params[:id])
+    if cart_product.quantity >= 2
     new_quantity = cart_product.quantity - 1
     price = cart_product.price / cart_product.quantity
     new_price = price * new_quantity
     cart_product.update(quantity: new_quantity, price: new_price)
+    else
+      cart_product.destroy
+    end
     redirect_to api_products_index_path
   end
 

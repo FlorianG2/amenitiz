@@ -2,8 +2,8 @@ class Api::ProductsController < ApplicationController
   def index
     @products = Product.all
     @cart_products = CartProduct.all
-    # render json: @products
     @total = total_green_tea + total_strawberries + total_coffee
+    # render json: {product: @products, cart_products: @cart_products, total: @total}
   end
 
   def total_green_tea

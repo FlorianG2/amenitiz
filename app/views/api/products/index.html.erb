@@ -9,6 +9,7 @@
 </div>
 <div>
   <% @cart_products.each do |cart_product| %>
+  <% if cart_product.quantity > 0%>
     <p><%= cart_product.quantity %></p>
     <p><%= cart_product.name %></p>
     <p><%= cart_product.price %>€</p>
@@ -21,6 +22,7 @@
     api_cart_product_path(cart_product),
     data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
     %>
+    <% end %>
   <% end %>
 </div>
 <div>
