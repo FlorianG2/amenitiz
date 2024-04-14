@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan, faSquareMinus } from '@fortawesome/free-solid-svg-icons'
 import "../../assets/stylesheets/components/Cart.css"
 
 const Cart = () => {
   const [cart_products, setCartProducts] = useState([]);
   const [total, setTotal] = useState([]);
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     fetch("/api/products/index")
@@ -15,8 +18,9 @@ const Cart = () => {
       })
       .then(data => {
         setCartProducts(data.cart_products)
-        console.log(data.cart_products);
         setTotal(data.total)
+        setItems(data.number_items)
+        console.log(data.number_items);
       })
       .catch(error => {
         console.error('There was an error fetching exercises:', error);
@@ -85,25 +89,27 @@ const handleRemoveQuantityCartProduct = (id) => {
   return(
   <>
   <div className="cart-container">
-    <p>{cart_products.length} item(s)</p>
     <div className="card-container">
       {cart_products.map(cart_product => (
-        <div className="cart-card">
+        <div className="cart-card" key={cart_product.id}>
           <div id="quantity">
-            <p key={cart_product.id}>{cart_product.quantity}.</p>
+            <p>{cart_product.quantity}.</p>
           </div>
           <div id="name">
-            <p key={cart_product.id}>{cart_product.name}</p>
+            <p>{cart_product.name}</p>
           </div>
           <div id="buttons">
-            <div id="delete-cart-product" onClick={() => handleDeleteCartProduct(cart_product.id)}>Delete</div>
+            <div className="button" id="delete-cart-product" onClick={() => handleDeleteCartProduct(cart_product.id)}><FontAwesomeIcon icon={faTrashCan} /></div>
             {cart_product.quantity > 1 ? (
-            <div onClick={() => handleRemoveQuantityCartProduct(cart_product.id)}>Remove</div>
-            ) : null}
+              <div className="button" onClick={() => handleRemoveQuantityCartProduct(cart_product.id)}><FontAwesomeIcon icon={faSquareMinus} /></div>
+              ) : null}
           </div>
         </div>
       ))}
-      <button onClick={() => handleDeleteAllCartProduct()}>Delete</button>
+      {items >= 1 ? (
+        <button onClick={() => handleDeleteAllCartProduct()}>Delete All <FontAwesomeIcon icon={faTrashCan} /></button>
+      ) : null}
+      <p id="items">{items}</p>
     </div>
     <div className="total-container">
       <h1>Total : {total}€</h1>

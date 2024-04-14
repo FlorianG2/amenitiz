@@ -40,8 +40,19 @@
 #buttons{
   width: 20%;
   display: flex;
+  justify-content: flex-end;
 }
 
 #delete-cart-product{
+  margin-right: 0.5em;
+}
+
+#items{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.button{
   cursor: pointer;
 }

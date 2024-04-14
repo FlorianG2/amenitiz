@@ -14,7 +14,6 @@ const Product = () => {
       })
       .then(data => {
         setProducts(data.products);
-        console.log(data.products);
       })
       .catch(error => {
         console.error('There was an error fetching exercises:', error);

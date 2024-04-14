@@ -3,8 +3,8 @@ class Api::ProductsController < ApplicationController
     @products = Product.all
     @cart_products = CartProduct.all
     @total = total_green_tea + total_strawberries + total_coffee
-    # render json: @products
-    render json: {products: @products, cart_products: @cart_products, total: @total}
+    @number_items = number_cart_products
+    render json: {products: @products, cart_products: @cart_products, total: @total, number_items: @number_items}
   end
 
   def total_green_tea
@@ -54,6 +54,18 @@ class Api::ProductsController < ApplicationController
       end
     else
       0
+    end
+  end
+
+  def number_cart_products
+    cart_products = CartProduct.all
+    number_items = 0
+    cart_products.each do |product|
+      number_items += product.quantity
+    end
+    if number_items > 0
+      "#{number_items} #{'item'.pluralize(number_items)}"
+    else
     end
   end
 end
