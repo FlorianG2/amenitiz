@@ -106,7 +106,7 @@ const handleRemoveQuantityCartProduct = (id) => {
           </div>
         </div>
       ))}
-      {items >= 1 ? (
+      {cart_products.length > 0 ? (
         <button onClick={() => handleDeleteAllCartProduct()}>Delete All <FontAwesomeIcon icon={faTrashCan} /></button>
       ) : null}
       <p id="items">{items}</p>
