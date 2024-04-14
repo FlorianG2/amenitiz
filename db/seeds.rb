@@ -15,6 +15,7 @@ products_json['products'].each do |product|
     code: product['code'],
     name: product['name'],
     price: product['price'],
+    url: product['url'],
   }
   Product.create!(attributes)
 end

@@ -1,4 +1,19 @@
 import React from "react";
-import Routes from "../routes";
+// import Routes from "../routes";
+import Home from "./Home";
+import Banner from "./Banner";
+import Product from "./Product";
 
-export default props => <>{Routes}</>;
+function App() {
+
+  return (
+    <div>
+      <Banner />
+      <Product />
+      <Home />
+      <p>test</p>
+    </div>
+  );
+}
+
+export default App;

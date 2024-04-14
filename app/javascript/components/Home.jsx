@@ -1,5 +1,5 @@
 // import "./Home.css"
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 const Home = () => {
@@ -16,7 +16,6 @@ const Home = () => {
         return response.json();
       })
       .then(data => {
-        console.log(data.products);
         setProducts(data.products);
         setCartProducts(data.cart_products)
         setTotal(data.total)
@@ -96,14 +95,14 @@ const handleRemoveQuantityCartProduct = (id) => {
 
   return(
     <div>
-      <div>
+      {/* <div>
         <h1>Produits</h1>
             {products.map(product => (
               <button key={product.id} onClick={() => handleCreateCartProduct(product.id)}>
                 <p>{product.name}</p>
               </button>
             ))}
-      </div>
+      </div> */}
       <div>
         <h1>Cart</h1>
           <ul>

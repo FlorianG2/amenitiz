@@ -3,17 +3,20 @@
     {
       "code": "GR1",
       "name": "Green Tea",
-      "price": 3.11
+      "price": 3.11,
+      "url": "/assets/petr-sidorov-yTEFwcLlHrU-unsplash.jpg"
     },
     {
       "code": "SR1",
       "name": "Strawberries",
-      "price": 5.00
+      "price": 5.00,
+      "url": "/assets/phyllis-poon-gY6j5aiswtY-unsplash.jpg"
     },
     {
       "code": "CF1",
       "name": "Coffee",
-      "price": 11.23
+      "price": 11.23,
+      "url": "/assets/errol-john-fegzFV9Lc4s-unsplash.jpg"
     }
   ]
 }
