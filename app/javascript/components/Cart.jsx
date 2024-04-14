@@ -7,6 +7,7 @@ const Cart = () => {
   const [cart_products, setCartProducts] = useState([]);
   const [total, setTotal] = useState([]);
   const [items, setItems] = useState([]);
+  const [total_discount, setTotalDiscount] = useState([]);
 
   useEffect(() => {
     fetch("/api/products/index")
@@ -20,7 +21,7 @@ const Cart = () => {
         setCartProducts(data.cart_products)
         setTotal(data.total)
         setItems(data.number_items)
-        console.log(data.number_items);
+        setTotalDiscount(data.total_discount)
       })
       .catch(error => {
         console.error('There was an error fetching exercises:', error);
@@ -111,6 +112,7 @@ const handleRemoveQuantityCartProduct = (id) => {
       ) : null}
       <p id="items">{items}</p>
     </div>
+      <h3>Total Discount :- {total_discount}€</h3>
     <div className="total-container">
       <h1>Total : {total}€</h1>
     </div>

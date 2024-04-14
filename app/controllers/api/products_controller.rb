@@ -3,8 +3,9 @@ class Api::ProductsController < ApplicationController
     @products = Product.all
     @cart_products = CartProduct.all
     @total = total_green_tea + total_strawberries + total_coffee
+    @total_discount = discount_coffee + discount_strawberries + discount_green_tea
     @number_items = number_cart_products
-    render json: {products: @products, cart_products: @cart_products, total: @total, number_items: @number_items}
+    render json: {products: @products, cart_products: @cart_products, total: @total, number_items: @number_items, total_discount: @total_discount}
   end
 
   def total_green_tea
@@ -15,11 +16,39 @@ class Api::ProductsController < ApplicationController
       if quantity > 2
         quantity_divided = quantity / 2.0
         product.price * quantity_divided.round
-      elsif [1, 2].include?(quantity)
-        product.price
       else
-        0
+        product.price
       end
+    else
+      0
+    end
+  end
+
+  def discount_green_tea
+    product = Product.find_by(code: 'GR1')
+    green_tea = CartProduct.find_by(product_id: product.id)
+    if green_tea
+      (product.price * green_tea.quantity) - total_green_tea
+    else
+      0
+    end
+  end
+
+  def discount_strawberries
+    product = Product.find_by(code: 'SR1')
+    strawberries = CartProduct.find_by(product_id: product.id)
+    if strawberries
+      (product.price * strawberries.quantity) - total_strawberries
+    else
+      0
+    end
+  end
+
+  def discount_coffee
+    product = Product.find_by(code: 'CF1')
+    coffee = CartProduct.find_by(product_id: product.id)
+    if coffee
+      (product.price * coffee.quantity) - total_coffee
     else
       0
     end
