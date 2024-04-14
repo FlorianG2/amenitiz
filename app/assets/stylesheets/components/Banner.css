@@ -1,12 +1,14 @@
 .banner {
-  background-color: #000000;
-  opacity: 75%;
+  background-color: #161616;
   color: white;
   margin: 0;
   height: 5em;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
 }
 
 h2{

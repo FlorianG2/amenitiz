@@ -32,15 +32,13 @@ const Product = () => {
   return(
     <div className="grid-product">
       {products.map(product => (
-        <div key={product.id} onClick={() => handleCreateCartProduct(product.id)} className="product-card">
-          <div className="photo"
+        <div key={product.id} onClick={() => handleCreateCartProduct(product.id)} className="product-card"
           style={{
             backgroundImage: `url(http://localhost:3000/${product.url})`,
             backgroundSize: 'contain'
             }}>
-            </div>
-          <p>{product.name}</p>
-        </div>
+            <p className="name">{product.name}</p>
+          </div>
       ))}
     </div>
   )
