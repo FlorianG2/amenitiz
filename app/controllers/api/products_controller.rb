@@ -5,7 +5,13 @@ class Api::ProductsController < ApplicationController
     @total = total_green_tea + total_strawberries + total_coffee
     @total_discount = discount_coffee + discount_strawberries + discount_green_tea
     @number_items = number_cart_products
-    render json: {products: @products, cart_products: @cart_products, total: @total, number_items: @number_items, total_discount: @total_discount}
+    render json: {
+      products: @products,
+      cart_products: @cart_products,
+      total: @total,
+      number_items: @number_items,
+      total_discount: @total_discount
+    }
   end
 
   def total_green_tea
@@ -28,7 +34,9 @@ class Api::ProductsController < ApplicationController
     product = Product.find_by(code: 'GR1')
     green_tea = CartProduct.find_by(product_id: product.id)
     if green_tea
-      (product.price * green_tea.quantity) - total_green_tea
+      discount = (product.price * green_tea.quantity) - total_green_tea
+      green_tea.update(discount: discount)
+      discount
     else
       0
     end
@@ -38,7 +46,9 @@ class Api::ProductsController < ApplicationController
     product = Product.find_by(code: 'SR1')
     strawberries = CartProduct.find_by(product_id: product.id)
     if strawberries
-      (product.price * strawberries.quantity) - total_strawberries
+      discount = (product.price * strawberries.quantity) - total_strawberries
+      strawberries.update(discount: discount)
+      discount
     else
       0
     end
@@ -48,7 +58,9 @@ class Api::ProductsController < ApplicationController
     product = Product.find_by(code: 'CF1')
     coffee = CartProduct.find_by(product_id: product.id)
     if coffee
-      (product.price * coffee.quantity) - total_coffee
+      discount = (product.price * coffee.quantity) - total_coffee
+      coffee.update(discount: discount)
+      discount
     else
       0
     end

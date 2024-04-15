@@ -8,7 +8,7 @@ class Api::CartProductsController < ApplicationController
     cart_product = CartProduct.find_by(product_id: id)
     if cart_product
       # If a CartProduct already exists for the product, update its quantity and price
-      cart_product.update(quantity: cart_product.quantity + 1, price: cart_product.price + product.price)
+      cart_product.update(quantity: cart_product.quantity + 1, price: cart_product.price + product.price, discount: 0)
     else
       # If a CartProduct doesn't exist, create a new one
       cart_product = CartProduct.new(name: product.name, price: product.price, quantity: 1, product_id: id)

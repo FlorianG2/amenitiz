@@ -19,6 +19,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
 }
 
 .total-container{
@@ -55,4 +56,29 @@
 
 .button{
   cursor: pointer;
+}
+
+.promotion{
+  font-size: 0.75em;
+}
+
+.cart-details{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.cart-promotion{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.italic{
+  font-style: italic;
 }
