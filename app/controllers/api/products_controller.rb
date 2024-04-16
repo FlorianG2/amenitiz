@@ -1,7 +1,7 @@
 class Api::ProductsController < ApplicationController
   def index
     @products = Product.all
-    @cart_products = CartProduct.all
+    @cart_products = CartProduct.all.order(:id)
     @total = total_green_tea + total_strawberries + total_coffee
     @total_discount = discount_coffee + discount_strawberries + discount_green_tea
     @number_items = number_cart_products

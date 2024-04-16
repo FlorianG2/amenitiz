@@ -14,7 +14,6 @@ class Api::CartProductsController < ApplicationController
       cart_product = CartProduct.new(name: product.name, price: product.price, quantity: 1, product_id: id)
       cart_product.save
     end
-    homepage_index_path
   end
 
   def update_quantity
@@ -27,7 +26,6 @@ class Api::CartProductsController < ApplicationController
     else
       cart_product.destroy
     end
-    redirect_to api_products_index_path
   end
 
   def destroy
