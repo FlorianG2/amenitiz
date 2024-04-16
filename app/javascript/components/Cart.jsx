@@ -132,7 +132,7 @@ const handleRemoveQuantityCartProduct = (id) => {
       <p id="items">{items}</p>
     </div>
     {total_discount > 0 ? (
-      <h4>Total Discount :- {total_discount}€</h4>
+      <h4>Total Promotion : {total_discount}€</h4>
     ) : null}
     <div className="total-container">
       <h1>Total : {total}€</h1>
