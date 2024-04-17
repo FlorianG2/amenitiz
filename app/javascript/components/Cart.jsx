@@ -91,7 +91,7 @@ const handleRemoveQuantityCartProduct = (id) => {
   <>
   <div className="cart-container">
     <div className="card-container">
-      <div className="cart-details">
+      <div className="cart-details bottom-border">
         <div id="quantity">
           <p className="bold italic">Qty</p>
         </div>
@@ -108,7 +108,7 @@ const handleRemoveQuantityCartProduct = (id) => {
         <div className="cart-card" key={cart_product.id}>
           <div className="cart-details">
             <div id="quantity">
-              <p>{cart_product.quantity}.</p>
+              <p>{cart_product.quantity}</p>
             </div>
             <div id="name">
               <p>{cart_product.name}</p>
@@ -129,13 +129,13 @@ const handleRemoveQuantityCartProduct = (id) => {
           </div>
         </div>
       ))}
-      <p id="items">{items}</p>
     </div>
-    {total_discount > 0 ? (
-      <h4>Total Promotion : {total_discount}€</h4>
-    ) : null}
     <div className="total-container">
-      <h1>Total : {total}€</h1>
+      <p id="items">{items}</p>
+      {total_discount > 0 ? (
+        <h5 id="total-promotion"> Total Promotion : {total_discount}€</h5>
+      ) : null}
+      <h1 id="total">Total : {total}€</h1>
     </div>
   </div>
 </>

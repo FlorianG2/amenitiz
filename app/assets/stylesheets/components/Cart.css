@@ -3,11 +3,11 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  width: 60%;
-  border-right: solid 1px black;
-  padding: 7em 2em 0em 2em;
+  width: 40%;
+  border-right: solid 1px #D9D9D9;
+  padding: 4em 2em 0 2em;
   font-size: 1.5em;
-  height: 80vh;
+  overflow: scroll;
 }
 
 .card-container{
@@ -23,11 +23,27 @@
 }
 
 .total-container{
+  width: 100%;
+  white-space: nowrap;
+}
+
+#total{
   background-color: #4C53E3;
   width: 100%;
   color: white;
-  padding-left: 3em;
-  margin-top: 2em;
+  margin: 0;
+  padding: 0 1em 0 1em;
+  position: relative;
+  left: -1em;
+}
+
+#total-promotion{
+  color: #b9b9b9;
+  width: 100%;
+  margin: 0;
+  font-style: italic;
+  border-top: solid 1px #D9D9D9;
+  padding: 1em 0 1em 0;
 }
 
 #quantity{
@@ -51,7 +67,6 @@
 #items{
   display: flex;
   justify-content: flex-end;
-  width: 100%;
 }
 
 .button{
@@ -60,6 +75,8 @@
 
 .promotion{
   font-size: 0.75em;
+  color: #D9D9D9;
+  font-weight: bold;
 }
 
 .cart-details{
@@ -67,6 +84,10 @@
   align-items: center;
   width: 100%;
   justify-content: space-around;
+}
+
+.bottom-border{
+  border-bottom: solid 1px #D9D9D9;
 }
 
 .cart-promotion{
