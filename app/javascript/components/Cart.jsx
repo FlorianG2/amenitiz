@@ -99,9 +99,7 @@ const handleRemoveQuantityCartProduct = (id) => {
           <p>Article</p>
         </div>
         <div className="bold italic button" id="buttons">
-        {cart_products.length > 0 ? (
-          <div onClick={() => handleDeleteAllCartProduct()}>All <FontAwesomeIcon icon={faTrashCan} /></div>
-        ) : null}
+          <p>Price</p>
         </div>
       </div>
       {cart_products.map(cart_product => (
@@ -114,6 +112,7 @@ const handleRemoveQuantityCartProduct = (id) => {
               <p>{cart_product.name}</p>
             </div>
             <div id="buttons">
+              <p>{cart_product.price} €</p>
               <div className="button" id="delete-cart-product" onClick={() => handleDeleteCartProduct(cart_product.id)}><FontAwesomeIcon icon={faTrashCan} /></div>
               {cart_product.quantity > 1 ? (
                 <div className="button" onClick={() => handleRemoveQuantityCartProduct(cart_product.id)}><FontAwesomeIcon icon={faSquareMinus} /></div>
@@ -131,7 +130,9 @@ const handleRemoveQuantityCartProduct = (id) => {
       ))}
     </div>
     <div className="total-container">
-      <p id="items">{items}</p>
+      {cart_products.length > 0 ? (
+          <div onClick={() => handleDeleteAllCartProduct()}><p id="items"><FontAwesomeIcon icon={faTrashCan} />{items}</p></div>
+        ) : null}
       {total_discount > 0 ? (
         <h5 id="total-promotion"> Total Promotion : {total_discount}€</h5>
       ) : null}

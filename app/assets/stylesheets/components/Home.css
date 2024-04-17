@@ -14,3 +14,8 @@ h1{
 body{
   min-width: min-content;
 }
+
+svg{
+  color: #4C53E3;
+  cursor: pointer;
+}
