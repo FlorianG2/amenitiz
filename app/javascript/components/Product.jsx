@@ -21,10 +21,8 @@ const Product = () => {
   }, []);
 
   const handleCreateCartProduct = (id) => {
-    // Construct the URL with the product ID
     const url = `/api/cart_products/create?product_id=${id}`;
     const root ="/"
-    // Navigate to the URL
     window.location.href = url;
     window.location.href = root
  }
@@ -36,7 +34,7 @@ const Product = () => {
             backgroundImage: `url(http://localhost:3000/${product.url})`,
             backgroundSize: 'contain'
             }}>
-            <p className="name">{product.name}</p>
+            <p className="name-product-card">{product.name}</p>
           </div>
       ))}
     </div>

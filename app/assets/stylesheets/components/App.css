@@ -1,5 +1,8 @@
 .flex{
   display: flex;
+}
+
+.h-100vh{
   height: 100vh;
 }
 
@@ -7,15 +10,20 @@ p{
   margin: 0.5em;
 }
 
-h1{
+h1, h2{
   margin: 0.2em;
 }
 
 body{
   min-width: min-content;
+  margin: 0;
 }
 
 svg{
   color: #4C53E3;
   cursor: pointer;
+}
+
+.w-100{
+  width: 100%;
 }

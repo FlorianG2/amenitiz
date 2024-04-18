@@ -1,12 +1,12 @@
 import React from "react";
 import Home from "./Home";
+import "../../assets/stylesheets/components/App.css"
+
 
 function App() {
 
   return (
-    <div>
-      <Home />
-    </div>
+    <Home />
   );
 }
 

@@ -4,13 +4,15 @@ class Api::ProductsController < ApplicationController
     @cart_products = CartProduct.all.order(:id)
     @total = total_green_tea + total_strawberries + total_coffee
     @total_discount = discount_coffee + discount_strawberries + discount_green_tea
+    @subtotal = subtotal
     @number_items = number_cart_products
     render json: {
       products: @products,
       cart_products: @cart_products,
       total: @total,
       number_items: @number_items,
-      total_discount: @total_discount
+      total_discount: @total_discount,
+      subtotal: @subtotal
     }
   end
 
@@ -108,5 +110,14 @@ class Api::ProductsController < ApplicationController
       "#{number_items} #{'item'.pluralize(number_items)}"
     else
     end
+  end
+
+  def subtotal
+    cart_products = CartProduct.all
+    subtotal = 0
+    cart_products.each do |product|
+      subtotal += product.price
+    end
+    subtotal
   end
 end

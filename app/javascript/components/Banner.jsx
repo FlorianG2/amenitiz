@@ -3,7 +3,7 @@ import "../../assets/stylesheets/components/Banner.css"
 
 const Banner = () => {
   return(
-    <div className="banner">
+    <div id="banner">
       <h2>Cash Register</h2>
     </div>
   )
