@@ -13,7 +13,7 @@ To get started with the Cash Register App, follow these steps:
 
 Clone this repository to your local machine.
 
-gh repo clone FlorianG2/cash-register-amenitiz cd cash-register-amenitiz
+gh repo clone FlorianG2/amenitiz cd amenitiz
 
 Ensure you have Ruby installed on your system.
 
